@@ -2,54 +2,97 @@
 <html lang="it">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#0f6b78">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b6670">
 <link rel="manifest" href="manifest.webmanifest">
 <title>Linea d'Acqua</title>
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#eef7f8;color:#17343a}
-header{background:#0f6b78;color:white;padding:22px 18px}h1{margin:0}main{max-width:900px;margin:auto;padding:16px 16px 80px}
-nav{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;padding:10px;background:white}
-nav button{border:0;border-radius:10px;padding:10px;background:#e5f1f3;color:#174951;font-weight:bold}
-.page{display:none}.active{display:block}.card{background:white;border-radius:16px;padding:16px;margin:12px 0;box-shadow:0 3px 12px #00000010}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}.metric{background:#f1f8f9;border-radius:12px;padding:14px}.metric b{display:block;font-size:24px;color:#0f6b78}
-button.primary{background:#0f6b78;color:white;border:0;border-radius:10px;padding:11px 15px;font-weight:bold}
-.plant{border-left:4px solid #3b8b67;padding:8px 12px;margin:10px 0}
-input,textarea{width:100%;padding:10px;border:1px solid #c9dfe2;border-radius:9px;margin:5px 0 12px}
-footer{text-align:center;color:#60777b;padding:20px}
+:root{--bg:#f4f8f8;--card:#fff;--text:#17343a;--muted:#60777b;--accent:#0b6670;--accent2:#168b8f;--line:#d9e5e5;--warn:#9b6815}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+header{background:linear-gradient(135deg,#075761,#15959a);color:#fff;padding:22px 18px 18px;position:sticky;top:0;z-index:5}
+header h1{margin:0;font-size:25px}header p{margin:5px 0 0;opacity:.9}
+main{max-width:900px;margin:auto;padding:16px 16px 90px}.view{display:none}.view.active{display:block}
+h2{font-size:22px;margin:8px 0 14px}h3{margin:4px 0 8px}.muted{color:var(--muted);font-size:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;margin:12px 0;box-shadow:0 2px 8px #0b66700d}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:10px}.metric{padding:14px;border-radius:14px;background:#edf7f7}.metric b{font-size:22px;display:block;color:var(--accent)}
+button,.btn{border:0;border-radius:12px;background:var(--accent);color:white;padding:11px 14px;font-weight:650;cursor:pointer}.secondary{background:#e6f0f0;color:var(--accent)}
+input,select,textarea{width:100%;padding:10px;border:1px solid #c9d9da;border-radius:10px;background:#fff;color:var(--text);margin-top:5px}label{font-size:13px;font-weight:650;display:block;margin:9px 0}
+nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);display:flex;overflow-x:auto;z-index:10}nav button{background:transparent;color:#456064;border-radius:0;min-width:92px;padding:10px 7px;font-size:12px}nav button.active{color:var(--accent);font-weight:800;border-top:3px solid var(--accent)}
+.badge{display:inline-block;background:#e4f3f2;color:var(--accent);padding:5px 9px;border-radius:20px;font-size:12px;margin:3px}
+.row{display:flex;gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap}.danger{color:#9b3333}.success{color:#17734a}.advice{border-left:4px solid var(--accent);padding-left:12px;margin:12px 0}
+table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;padding:8px;border-bottom:1px solid var(--line)}
+.small{font-size:12px}.empty{text-align:center;padding:25px;color:var(--muted)}
 </style>
 </head>
 <body>
-<header><h1>Linea d'Acqua</h1><div>Gestione intelligente del tuo acquario</div></header>
-<nav>
-<button onclick="show('home')">Home</button><button onclick="show('acquario')">Acquario</button><button onclick="show('piante')">Piante</button>
-<button onclick="show('diario')">Diario</button><button onclick="show('analisi')">Analisi</button><button onclick="show('consigli')">Consigli</button>
-</nav>
+<header><h1>🌊 Linea d’Acqua</h1><p>Gestione, diario e analisi del tuo acquario</p></header>
 <main>
-<section id="home" class="page active">
-<div class="card"><h2>Benvenuto</h2><p>Controlla valori, piante, diario e manutenzione del tuo acquario.</p></div>
-<div class="card"><h2>Panoramica</h2><div class="grid">
-<div class="metric"><b>22,8 °C</b>Temperatura</div><div class="metric"><b>7,5</b>pH</div>
-<div class="metric"><b>0 mg/L</b>NO₂</div><div class="metric"><b>5 °dKH</b>KH</div>
-</div></div></section>
-<section id="acquario" class="page"><div class="card"><h2>Il mio acquario</h2>
-<p><b>Juwel Rio 180</b></p><p>Filtro: Crystal Profi E903</p><p>Illuminazione: 14:00–20:00</p><p>Stato: Maturazione</p></div></section>
-<section id="piante" class="page"><div class="card"><h2>Piante</h2>
-<div class="plant"><b>Pogostemon erectus</b></div><div class="plant"><b>Hemianthus / Micranthemum callitrichoides</b></div>
-<div class="plant"><b>Bucephalandra</b></div><div class="plant"><b>Ludwigia glandulosa</b></div></div></section>
-<section id="diario" class="page"><div class="card"><h2>Diario</h2>
-<label>Data</label><input id="date" type="date"><label>Nota</label><textarea id="note" rows="5" placeholder="Inserisci osservazioni..."></textarea>
-<button class="primary" onclick="saveNote()">Salva nota</button><p id="saved"></p></div></section>
-<section id="analisi" class="page"><div class="card"><h2>Analisi dell'acqua</h2><div class="grid">
-<div class="metric"><b>7,5</b>pH</div><div class="metric"><b>5</b>KH</div><div class="metric"><b>0</b>NO₂</div><div class="metric"><b>1,7</b>Fe mg/L</div>
-</div><p>Registra i test per costruire lo storico dell'acquario.</p></div></section>
-<section id="consigli" class="page"><div class="card"><h2>Consigli</h2>
-<ul><li>Controlla regolarmente i parametri durante la maturazione.</li><li>Registra ogni modifica nel diario.</li><li>Collega valori, piante e manutenzione per ottenere consigli personalizzati.</li></ul></div></section>
-</main><footer>Linea d'Acqua · PWA di prova</footer>
+<section id="home" class="view active">
+<h2>Benvenuto</h2>
+<div class="card"><h3>Il mio acquario</h3><p class="muted">Juwel Rio 180 · maturazione in corso</p>
+<div class="grid"><div class="metric"><span>Temperatura</span><b id="homeTemp">22,8 °C</b></div><div class="metric"><span>pH</span><b id="homePh">7,5</b></div><div class="metric"><span>NO₂</span><b id="homeNo2">0 mg/L</b></div><div class="metric"><span>KH</span><b id="homeKh">5 °dKH</b></div></div></div>
+<div class="card"><h3>Accesso rapido</h3><div class="row"><button onclick="show('acquario')">🐠 Il mio acquario</button><button onclick="show('diario')">📓 Nuovo test</button><button onclick="show('consigli')">💡 Consigli</button></div></div>
+<div class="card"><h3>Stato della prova</h3><p>Questa è la <b>versione 0.1</b>: le sezioni sono collegate e i dati del diario vengono salvati nel browser.</p></div>
+</section>
+
+<section id="acquario" class="view"><h2>🐠 Il mio acquario</h2>
+<div class="card"><h3>Dati della vasca</h3><div class="grid">
+<label>Nome<input id="tankName" value="Il mio Rio 180"></label><label>Volume (L)<input id="tankVol" type="number" value="180"></label><label>Temperatura (°C)<input id="tankTemp" type="number" step=".1" value="22.8"></label><label>Giorno maturazione<input id="tankDay" type="number" value="4"></label></div><button onclick="saveTank()">Salva dati</button></div>
+<div class="card"><h3>Attrezzatura</h3><span class="badge">Filtro Crystal Profi E903</span><span class="badge">Riscaldatore</span><span class="badge">Luce 14:00–20:00</span></div>
+<div class="card"><h3>Substrato</h3><p>Fondo fertile circa 1–2 cm + ghiaia circa 3–4 cm.</p></div>
+</section>
+
+<section id="guida" class="view"><h2>📖 Guida</h2>
+<div class="card"><h3>1. Allestimento</h3><p>Posiziona substrato, arredi e piante, riempi con attenzione e avvia filtro e riscaldatore.</p></div>
+<div class="card"><h3>2. Maturazione</h3><p>Durante la maturazione il filtro sviluppa la comunità batterica che trasforma ammoniaca e nitriti. Evita di inserire pesci finché il ciclo non è stabilizzato.</p></div>
+<div class="card"><h3>3. Controllo dei valori</h3><p>Segna regolarmente pH, KH, GH, NO₂, NO₃ e gli altri parametri utili. La costanza dello storico è importante.</p></div>
+<div class="card"><h3>4. Piante e luce</h3><p>Osserva crescita e salute delle piante, evita cambiamenti bruschi e adatta la gestione ai risultati dei test.</p></div>
+<div class="card"><h3>5. Manutenzione</h3><p>Registra cambi d’acqua, pulizia, fertilizzazione e qualsiasi evento rilevante nel Diario.</p></div>
+</section>
+
+<section id="piante" class="view"><h2>🌿 Piante</h2><div class="card"><h3>Le mie piante</h3><div id="plants"></div>
+<div class="row"><input id="newPlant" placeholder="Nome della pianta"><button onclick="addPlant()">Aggiungi</button></div></div>
+<div class="card"><h3>Prime schede</h3><p><b>Pogostemon erectus</b> — pianta a stelo, apprezza buona luce e disponibilità di nutrienti.</p><p><b>Ludwigia glandulosa</b> — pianta a stelo; luce e nutrizione influenzano la colorazione.</p><p><b>Bucephalandra</b> — crescita lenta; preferisce essere fissata a legni o rocce, senza interrare il rizoma.</p></div>
+</section>
+
+<section id="diario" class="view"><h2>📓 Diario</h2>
+<div class="card"><h3>Inserisci un test</h3><div class="grid">
+<label>Data<input id="dDate" type="date"></label><label>Temperatura °C<input id="dTemp" type="number" step=".1" value="22.8"></label>
+<label>pH<input id="dPh" type="number" step=".1" value="7.5"></label><label>KH °dKH<input id="dKh" type="number" step=".1" value="5"></label>
+<label>GH °dGH<input id="dGh" type="number" step=".1"></label><label>NO₂ mg/L<input id="dNo2" type="number" step=".01" value="0"></label>
+<label>NO₃ mg/L<input id="dNo3" type="number" step=".1"></label><label>PO₄ mg/L<input id="dPo4" type="number" step=".1"></label>
+<label>Fe mg/L<input id="dFe" type="number" step=".1"></label>
+</div><label>Note<textarea id="dNote" rows="3" placeholder="Cambi d'acqua, fertilizzazione, piante, osservazioni..."></textarea></label>
+<button onclick="addEntry()">Salva nel diario</button></div>
+<div class="card"><h3>Storico</h3><div id="history"></div></div>
+</section>
+
+<section id="analisi" class="view"><h2>📊 Analisi</h2><div class="card"><div id="analysis"></div></div></section>
+
+<section id="consigli" class="view"><h2>💡 Consigli</h2><div class="card"><h3>Analisi automatica di prova</h3><div id="advice"></div></div>
+<div class="card"><h3>Come funziona</h3><p>L'app confronta i valori registrati con intervalli indicativi e considera le note del diario. Nella versione successiva potremo ampliare le regole per piante, fertilizzazione, fauna e andamento nel tempo.</p></div></section>
+</main>
+<nav id="nav">
+<button data-v="home" onclick="show('home')">🏠<br>Home</button><button data-v="acquario" onclick="show('acquario')">🐠<br>Acquario</button><button data-v="guida" onclick="show('guida')">📖<br>Guida</button><button data-v="piante" onclick="show('piante')">🌿<br>Piante</button><button data-v="diario" onclick="show('diario')">📓<br>Diario</button><button data-v="analisi" onclick="show('analisi')">📊<br>Analisi</button><button data-v="consigli" onclick="show('consigli')">💡<br>Consigli</button>
+</nav>
 <script>
-function show(id){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');scrollTo(0,0)}
-function saveNote(){const n=document.getElementById('note').value.trim();if(n){localStorage.setItem('lineaAcqua_note',n);document.getElementById('saved').textContent='Nota salvata sul dispositivo.'}}
-if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
-document.getElementById('date').valueAsDate=new Date();
+const $=id=>document.getElementById(id);
+let entries=JSON.parse(localStorage.getItem('lda_entries')||'[]');
+let plants=JSON.parse(localStorage.getItem('lda_plants')||'["Pogostemon erectus","Ludwigia glandulosa","Bucephalandra"]');
+let tank=JSON.parse(localStorage.getItem('lda_tank')||'{}');
+function show(id){document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));$(id).classList.add('active');document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.v===id));if(id==='analisi')renderAnalysis();if(id==='consigli')renderAdvice();if(id==='diario')renderHistory();if(id==='piante')renderPlants();window.scrollTo(0,0)}
+function saveTank(){tank={name:$('tankName').value,vol:$('tankVol').value,temp:$('tankTemp').value,day:$('tankDay').value};localStorage.setItem('lda_tank',JSON.stringify(tank));$('homeTemp').textContent=tank.temp+' °C';alert('Dati acquario salvati.')}
+function addPlant(){let n=$('newPlant').value.trim();if(!n)return;plants.push(n);localStorage.setItem('lda_plants',JSON.stringify(plants));$('newPlant').value='';renderPlants()}
+function renderPlants(){$('plants').innerHTML=plants.length?plants.map((p,i)=>`<div class="row card"><span>🌿 ${p}</span><button class="secondary" onclick="removePlant(${i})">Rimuovi</button></div>`).join(''):'<div class="empty">Nessuna pianta aggiunta.</div>'}
+function removePlant(i){plants.splice(i,1);localStorage.setItem('lda_plants',JSON.stringify(plants));renderPlants()}
+function addEntry(){let e={date:$('dDate').value||new Date().toISOString().slice(0,10),temp:$('dTemp').value,ph:$('dPh').value,kh:$('dKh').value,gh:$('dGh').value,no2:$('dNo2').value,no3:$('dNo3').value,po4:$('dPo4').value,fe:$('dFe').value,note:$('dNote').value};entries.unshift(e);localStorage.setItem('lda_entries',JSON.stringify(entries));$('dNote').value='';renderHistory();renderAnalysis();renderAdvice();alert('Test salvato nel diario.')}
+function renderHistory(){if(!entries.length){$('history').innerHTML='<div class="empty">Nessun test salvato. Inserisci il primo test qui sopra.</div>';return}$('history').innerHTML='<table><tr><th>Data</th><th>pH</th><th>KH</th><th>NO₂</th><th>NO₃</th><th>Fe</th></tr>'+entries.map(e=>`<tr><td>${e.date}</td><td>${e.ph||'—'}</td><td>${e.kh||'—'}</td><td>${e.no2||'—'}</td><td>${e.no3||'—'}</td><td>${e.fe||'—'}</td></tr>`).join('')+'</table><br><button class="secondary" onclick="clearEntries()">Cancella storico</button>'}
+function clearEntries(){if(confirm('Cancellare tutto lo storico?')){entries=[];localStorage.setItem('lda_entries','[]');renderHistory();renderAnalysis();renderAdvice()}}
+function latest(){return entries[0]||{ph:7.5,kh:5,no2:0,temp:22.8}}
+function renderAnalysis(){let e=latest();let last=entries.length?'Ultimo test: '+e.date:'Nessun test ancora salvato';$('analysis').innerHTML=`<p class="muted">${last}</p><div class="grid"><div class="metric">pH<b>${e.ph||'—'}</b></div><div class="metric">KH<b>${e.kh||'—'}</b></div><div class="metric">NO₂<b>${e.no2||'—'}</b></div><div class="metric">NO₃<b>${e.no3||'—'}</b></div><div class="metric">PO₄<b>${e.po4||'—'}</b></div><div class="metric">Fe<b>${e.fe||'—'}</b></div></div>`}
+function renderAdvice(){let e=latest(), a=[];if(Number(e.no2)>0)a.push('<div class="advice"><b>⚠️ Nitriti:</b> il valore registrato è sopra zero. Durante la maturazione è importante continuare a monitorarlo e non inserire pesci finché il ciclo non è stabilizzato.</div>');else a.push('<div class="advice success"><b>✓ NO₂:</b> nell’ultimo dato registrato risulta 0 mg/L.</div>');if(Number(e.ph)>7.5)a.push('<div class="advice"><b>pH:</b> il dato è alcalino; interpretalo insieme a KH, GH e alle esigenze della fauna prevista.</div>');else a.push('<div class="advice"><b>pH:</b> continua a registrarlo nello storico per vedere l’andamento.</div>');if(!entries.length)a.push('<div class="advice">Inserisci altri test nel tempo: l’algoritmo diventerà più utile quando avrà uno storico.</div>');a.push('<div class="advice"><b>🌿 Fertilizzazione:</b> evita di modificare molti parametri contemporaneamente. Osserva prima piante, valori e andamento.</div>');$('advice').innerHTML=a.join('')}
+function init(){if(tank.name){$('tankName').value=tank.name;$('tankVol').value=tank.vol;$('tankTemp').value=tank.temp;$('tankDay').value=tank.day;$('homeTemp').textContent=tank.temp+' °C'}$('dDate').value=new Date().toISOString().slice(0,10);renderPlants();renderHistory();renderAnalysis();renderAdvice();document.querySelector('nav button').classList.add('active')}
+init();
+if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
 </script>
 </body></html>
