@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0f6b78">
+<link rel="manifest" href="manifest.webmanifest">
+<title>Linea d'Acqua</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#eef7f8;color:#17343a}
+header{background:#0f6b78;color:white;padding:22px 18px}h1{margin:0}main{max-width:900px;margin:auto;padding:16px 16px 80px}
+nav{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;padding:10px;background:white}
+nav button{border:0;border-radius:10px;padding:10px;background:#e5f1f3;color:#174951;font-weight:bold}
+.page{display:none}.active{display:block}.card{background:white;border-radius:16px;padding:16px;margin:12px 0;box-shadow:0 3px 12px #00000010}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}.metric{background:#f1f8f9;border-radius:12px;padding:14px}.metric b{display:block;font-size:24px;color:#0f6b78}
+button.primary{background:#0f6b78;color:white;border:0;border-radius:10px;padding:11px 15px;font-weight:bold}
+.plant{border-left:4px solid #3b8b67;padding:8px 12px;margin:10px 0}
+input,textarea{width:100%;padding:10px;border:1px solid #c9dfe2;border-radius:9px;margin:5px 0 12px}
+footer{text-align:center;color:#60777b;padding:20px}
+</style>
+</head>
+<body>
+<header><h1>Linea d'Acqua</h1><div>Gestione intelligente del tuo acquario</div></header>
+<nav>
+<button onclick="show('home')">Home</button><button onclick="show('acquario')">Acquario</button><button onclick="show('piante')">Piante</button>
+<button onclick="show('diario')">Diario</button><button onclick="show('analisi')">Analisi</button><button onclick="show('consigli')">Consigli</button>
+</nav>
+<main>
+<section id="home" class="page active">
+<div class="card"><h2>Benvenuto</h2><p>Controlla valori, piante, diario e manutenzione del tuo acquario.</p></div>
+<div class="card"><h2>Panoramica</h2><div class="grid">
+<div class="metric"><b>22,8 °C</b>Temperatura</div><div class="metric"><b>7,5</b>pH</div>
+<div class="metric"><b>0 mg/L</b>NO₂</div><div class="metric"><b>5 °dKH</b>KH</div>
+</div></div></section>
+<section id="acquario" class="page"><div class="card"><h2>Il mio acquario</h2>
+<p><b>Juwel Rio 180</b></p><p>Filtro: Crystal Profi E903</p><p>Illuminazione: 14:00–20:00</p><p>Stato: Maturazione</p></div></section>
+<section id="piante" class="page"><div class="card"><h2>Piante</h2>
+<div class="plant"><b>Pogostemon erectus</b></div><div class="plant"><b>Hemianthus / Micranthemum callitrichoides</b></div>
+<div class="plant"><b>Bucephalandra</b></div><div class="plant"><b>Ludwigia glandulosa</b></div></div></section>
+<section id="diario" class="page"><div class="card"><h2>Diario</h2>
+<label>Data</label><input id="date" type="date"><label>Nota</label><textarea id="note" rows="5" placeholder="Inserisci osservazioni..."></textarea>
+<button class="primary" onclick="saveNote()">Salva nota</button><p id="saved"></p></div></section>
+<section id="analisi" class="page"><div class="card"><h2>Analisi dell'acqua</h2><div class="grid">
+<div class="metric"><b>7,5</b>pH</div><div class="metric"><b>5</b>KH</div><div class="metric"><b>0</b>NO₂</div><div class="metric"><b>1,7</b>Fe mg/L</div>
+</div><p>Registra i test per costruire lo storico dell'acquario.</p></div></section>
+<section id="consigli" class="page"><div class="card"><h2>Consigli</h2>
+<ul><li>Controlla regolarmente i parametri durante la maturazione.</li><li>Registra ogni modifica nel diario.</li><li>Collega valori, piante e manutenzione per ottenere consigli personalizzati.</li></ul></div></section>
+</main><footer>Linea d'Acqua · PWA di prova</footer>
+<script>
+function show(id){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');scrollTo(0,0)}
+function saveNote(){const n=document.getElementById('note').value.trim();if(n){localStorage.setItem('lineaAcqua_note',n);document.getElementById('saved').textContent='Nota salvata sul dispositivo.'}}
+if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
+document.getElementById('date').valueAsDate=new Date();
+</script>
+</body></html>
