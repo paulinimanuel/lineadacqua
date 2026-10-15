@@ -1,13 +1,17 @@
 {
-  "name":"Linea d’Acqua",
-  "short_name":"Linea d’Acqua",
-  "start_url":"./",
-  "display":"standalone",
-  "background_color":"#f4f8f8",
-  "theme_color":"#0b6670",
-  "description":"Gestione e diario dell'acquario",
-  "icons":[
-    {"src":"icon-192.png","sizes":"192x192","type":"image/png"},
-    {"src":"icon-512.png","sizes":"512x512","type":"image/png"}
+  "name": "Linea d’Acqua",
+  "short_name": "Linea d’Acqua",
+  "description": "Gestione dell’acquario, valori, piante e diario",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#03182d",
+  "theme_color": "#03182d",
+  "icons": [
+    {
+      "src": "logo-pesce-angelo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
   ]
 }
